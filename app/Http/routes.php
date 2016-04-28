@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Routes File
@@ -10,8 +9,10 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-Route::get('/', ['as' => 'inventory.index', 'uses' => 'InventoryController@index']);
-Route::get('/form', ['as' => 'inventory.form', 'uses' => 'InventoryController@form']);
-Route::post('/create', ['as' => 'inventory.create', 'uses' => 'InventoryController@create']);
-Route::get('/detail/{id}', ['as' => 'inventory.detail', 'uses' => 'InventoryController@detail']);
+Route::group(['middleware' => 'web'], function(){
+	Route::get('/', ['as' => 'inventory.index', 'uses' => 'InventoryController@index']);
+	Route::get('/form', ['as' => 'inventory.form', 'uses' => 'InventoryController@form']);
+	Route::post('/create', ['as' => 'inventory.create', 'uses' => 'InventoryController@create']);
+	Route::get('/detail/{id}', ['as' => 'inventory.detail', 'uses' => 'InventoryController@detail']);
+	
+});
